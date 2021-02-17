@@ -4,6 +4,8 @@
 This repository contains scripts to perform GWAS using SAIGE for COVID patients and control individuals from the Mass General Brigham Biobank (formerly Partners Healthcare Biobank). This analysis contributes to the meta-analysis of the COVID-19 Host Genetics Initiative (https://www.covid19hg.org/) to study the genetic determinants of COVID-19 susceptibility and severity.
 
 
+The analysis is performed in the following order:
+
 * `munge_pheno_covar.sh`
 	- Format and integrate phenotype and covariate files
 	- Summarize Ncase and Ncontrol for each analysis
