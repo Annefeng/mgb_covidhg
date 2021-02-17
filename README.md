@@ -1,7 +1,7 @@
 
 # GWAS of COVID-19 susceptibility and severity
 
-This repository contains scripts to perform GWAS using SAIGE for COVID patients and control individuals from the Mass General Brigham (MGB) Biobank. This analysis contributes to the meta-analysis of the COVID-19 Host Genetics Initiative (https://www.covid19hg.org/) to study the genetic determinants of COVID-19 susceptibility and severity.
+This repository contains scripts to perform GWAS using SAIGE for COVID patients and control individuals from the Mass General Brigham Biobank (formerly Partners Healthcare Biobank). This analysis contributes to the meta-analysis of the COVID-19 Host Genetics Initiative (https://www.covid19hg.org/) to study the genetic determinants of COVID-19 susceptibility and severity.
 
 
 * `munge_pheno_covar.sh`
