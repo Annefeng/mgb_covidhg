@@ -11,10 +11,11 @@ f_negat=covid-negative.txt
 f_pctrl=controls.txt
 
 cd $wdir
+
+# Reformat and check input data (any overlap btw definitions)
+# (note the input files Emma shared do not separate by genetic ancestry)
 awk 'NR>1{print $2}' $f_dintu | sort > dintu_id.tsv
-# awk 'NR>1{print $2}' $f_inpts | sort > inpts_id.tsv
 awk 'NR>1{print $2}' $f_inpts | sort > inpts_id.tsv
-# awk 'NR>1{print $2}' $f_nonip | sort > nonip_id.tsv
 awk 'NR>1{print $3}' $f_covid | sort > covid_id.tsv
 awk 'NR>1{print $2}' $f_negat | sort > negat_id.tsv
 awk 'NR>1{print $2}' $f_pctrl | sort > pctrl_id.tsv
@@ -49,7 +50,9 @@ join covid_id.tsv pctrl_id.tsv | wc -l #0
 join negat_id.tsv pctrl_id.tsv | wc -l #3884
 
 
-# pop=eur
+
+
+# Create phenotype/covariate files for saige input; summarize sample size for each analysis
 for pop in eur afr his; do
     echo ""
     echo "[ Population: "$pop" ]"
@@ -93,7 +96,6 @@ for pop in eur afr his; do
     echo "- N ctrls: "$(cat ctrl.tmp | wc -l)
     cat case.tmp ctrl.tmp > ${pop}_a2_gwas_pheno.tsv
 
-    # echo "- ANA2: inpt vs. non-inpt covid patients"
     echo "* B1: inpts vs. non-inpts covid patients"
     awk '{print $1,$2=1}' ${pop}_inpts_id.tsv > case.tmp
     awk '{print $1,$2=0}' ${pop}_nonip_id.tsv > ctrl.tmp
@@ -108,7 +110,6 @@ for pop in eur afr his; do
     echo "- N ctrls: "$(cat ctrl.tmp | wc -l)
     cat case.tmp ctrl.tmp > ${pop}_b2_gwas_pheno.tsv
 
-    # echo "- ANA5: covid vs. non-covid pop controls"
     echo "* C1: covid vs. covid-negative"
     awk '{print $1,$2=1}' ${pop}_covid_id.tsv > case.tmp
     awk '{print $1,$2=0}' ${pop}_negat_id.tsv > ctrl.tmp
@@ -137,10 +138,6 @@ for pop in eur afr his; do
 
 done
 
-
-# PHBB_SNPs_35K_20_PCs_EU_RELATED.txt
-# PHBB_SNPs_35K_20_PCs_HIS_RELATED.txt
-# PHBB_SNPs_35K_20_PCs_AFR_RELATED.txt
 
 
 # ##########
